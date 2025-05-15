@@ -21,6 +21,17 @@ INSERT INTO clientes (nombre, apellido, rut, correo, telefono) VALUES
 
 -------------------------------------------------------------------------------------------
 
+Poblado de tablas de Ventas
+
+INSERT INTO ventas (nombre_producto, cantidad, precio, total, fecha_venta) VALUES
+('Perfume Carolina Herrera', 3, 45000, 135000, NOW()),
+('Perfume Dior Sauvage', 2, 60000, 120000, NOW()),
+('Perfume Jean Paul Gaultier', 1, 75000, 75000, NOW()),
+('Perfume Paco Rabanne One Million', 4, 52000, 208000, NOW()),
+('Perfume Versace Eros', 2, 68000, 136000, NOW());
+
+
+-------------------------------------------------------------------------------------------
 
 
 
