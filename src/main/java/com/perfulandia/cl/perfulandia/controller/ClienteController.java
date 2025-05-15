@@ -17,7 +17,7 @@ import com.perfulandia.cl.perfulandia.model.Cliente;
 import com.perfulandia.cl.perfulandia.service.ClienteService;
 
 @RestController
-@RequestMapping("/api/clientes")
+@RequestMapping("/api/administrador/clientes")
 public class ClienteController {
 
 
