@@ -34,6 +34,19 @@ INSERT INTO ventas (nombre_producto, cantidad, precio, total, fecha_venta) VALUE
 -------------------------------------------------------------------------------------------
 
 
+Poblado de tablas de Producto 
+
+INSERT INTO productos (nombre, descripcion) VALUES
+('Hugo Boss Bottled', 'Perfume Hugo Boss Bottled 100ml'),
+('Calvin Klein Eternity', 'Perfume Calvin Klein Eternity 200ml'),
+('Dior Sauvage', 'Perfume Dior Sauvage 100ml'),
+('Carolina Herrera Good Girl', 'Perfume Carolina Herrera Good Girl 80ml'),
+('Versace Eros', 'Perfume Versace Eros 100ml');
+
+
+---------------------------------------------------------------------------------------------
+
+
 
 
 
