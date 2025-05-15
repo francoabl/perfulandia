@@ -1,2 +1,28 @@
 # perfulandia
 Proyecto semestral realizado en springboot
+
+-------------------------------------------------------------------------------------------
+
+Poblado de tablas de clientes
+
+USE perfulandia;
+
+INSERT INTO clientes (nombre, apellido, rut, correo, telefono) VALUES
+('Juan', 'Pérez', '12.345.678-9', 'juan.perez@example.com', '+56912345678'),
+('Ana', 'Gómez', '11.222.333-4', 'ana.gomez@example.com', '+56987654321'),
+('Carlos', 'Soto', '15.555.555-5', 'carlos.soto@example.com', '+56911223344'),
+('María', 'López', '18.999.999-6', 'maria.lopez@example.com', '+56922334455'),
+('Pedro', 'Muñoz', '17.888.888-7', 'pedro.munoz@example.com', '+56933445566'),
+('Sofía', 'Ramírez', '14.444.444-8', 'sofia.ramirez@example.com', '+56944556677'),
+('Diego', 'Herrera', '13.333.333-2', 'diego.herrera@example.com', '+56955667788'),
+('Camila', 'Rojas', '19.111.111-1', 'camila.rojas@example.com', '+56966778899'),
+('Felipe', 'Navarro', '16.666.666-3', 'felipe.navarro@example.com', '+56977889900'),
+('Valentina', 'Fuentes', '10.101.010-0', 'valentina.fuentes@example.com', '+56988990011');
+
+-------------------------------------------------------------------------------------------
+
+
+
+
+
+
