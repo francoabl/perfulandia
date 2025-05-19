@@ -39,8 +39,6 @@ public class ClienteController {
     public ResponseEntity<Cliente> actualizarCliente(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
         return clienteRepository.findById(id)
             .map(c -> {
-                c.setNombre(cliente.getNombre());
-                c.setCorreo(cliente.getCorreo());
                 return ResponseEntity.ok(clienteRepository.save(c));
             }).orElse(ResponseEntity.notFound().build());
     }
