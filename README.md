@@ -2,6 +2,8 @@
 <h1>Proyecto semestral realizado en springboot</h1>
 
 <h2>Poblado de tablas</h2>
+
+<h2>Productos</h2>
 <code>INSERT INTO productos (nombre, descripcion, precio, stock) VALUES
 ('Chanel No. 5', 'Perfume clásico floral para mujer', 120000, 15),
 ('Dior Sauvage', 'Aroma fresco y amaderado para hombre', 110000, 20),
@@ -53,7 +55,7 @@
 ('Boss The Scent', 'Fragancia seductora y amaderada para hombre', 97000, 10),
 ('Pleasures', 'Perfume fresco y floral para mujer', 90000, 12);</code>
 
-
+<h2>Clientes</h2>
 <code>INSERT INTO cliente (nombre, apellido, correo) VALUES
 ('Camila', 'González', 'camila.gonzalez@email.com'),
 ('Javier', 'Muñoz', 'javier.munoz@email.com'),
@@ -105,7 +107,7 @@
 ('Gabriela', 'Escalona', 'gabriela.escalona@email.com'),
 ('Leonardo', 'Bustos', 'leonardo.bustos@email.com');</code>
 
-
+<h2>Ventas</h2>
 <code>INSERT INTO venta (cliente_id, producto_id, cantidad, fecha) VALUES
 (1, 3, 2, '2024-05-01'),
 (2, 7, 1, '2024-05-02'),
@@ -133,3 +135,9 @@ public ResponseEntity<Cliente> obtenerClientePorId(@PathVariable Long id) {
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
 }</code>
+
+<h2>Sucursales</h2>
+<code>INSERT INTO sucursal (nombre, direccion, telefono, ciudad) VALUES
+('Perfulandia Viña del mar', 'Eduardo Frei 3326, Viña del Mar', '+56942536125', 'Valparaíso'),
+('Perfulandia Concepcion', 'Paicaví 2222, Conecpcion', '+56974927364', 'Concepcion'),
+('Perfulandia', 'Salvador Sanfuentes 2608, Barrio Meiggs', '+56974927364', 'Santiago');</code>
