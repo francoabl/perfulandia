@@ -1,6 +1,6 @@
 <h1>Perfulandia proyecto semestral realizado en springboot</h1> 
 <img width ='32px' src ='https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/spring.svg'> </a>
-
+<img width ='32px' src ='https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/postman.svg'> </a>
 <h2>Poblado de tablas</h2>
 
 <h2>Productos</h2>
