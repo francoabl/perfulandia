@@ -1,9 +1,9 @@
 package com.perfulandia.cl.perfulandia.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,38 +14,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.perfulandia.cl.perfulandia.model.Cliente;
-import com.perfulandia.cl.perfulandia.service.ClienteService;
+import com.perfulandia.cl.perfulandia.repository.ClienteRepository;
+
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/administrador/clientes")
+@RequestMapping("/api/clientes")
 public class ClienteController {
 
-
 @Autowired
-private ClienteService clienteService;
-
-@GetMapping
-public List<Cliente> getAllClientes() {
-    return clienteService.getAllClientes();
-}
+private ClienteRepository clienteRepository;
 
 @GetMapping("/{id}")
-public Optional<Cliente> getClienteById(@PathVariable Long id) {
-    return clienteService.getClienteById(id);
+public ResponseEntity<Cliente> obtenerClientePorId(@PathVariable Long id) {
+    return clienteRepository.findById(id)
+        .map(ResponseEntity::ok)
+        .orElse(ResponseEntity.notFound().build());
+}
+
+@GetMapping
+public List<Cliente> listarClientes() {
+    return clienteRepository.findAll();
 }
 
 @PostMapping
-public Cliente createCliente(@RequestBody Cliente cliente) {
-    return clienteService.createCliente(cliente);
+public Cliente crearCliente(@Valid @RequestBody Cliente cliente) {
+    return clienteRepository.save(cliente);
 }
 
 @PutMapping("/{id}")
-public Cliente updateCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
-    return clienteService.updateCliente(id, cliente);
+public ResponseEntity<Cliente> actualizarCliente(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
+    return clienteRepository.findById(id)
+        .map(c -> {
+            c.setNombre(cliente.getNombre());
+            c.setCorreo(cliente.getCorreo());
+            c.setApellido(cliente.getApellido());
+            Cliente actualizado = clienteRepository.save(c);
+            return ResponseEntity.ok(actualizado);
+        }).orElse(ResponseEntity.notFound().build());
 }
 
 @DeleteMapping("/{id}")
-public void deleteCliente(@PathVariable Long id) {
-    clienteService.deleteCliente(id);
+public ResponseEntity<Void> eliminarCliente(@PathVariable Long id) {
+    if (!clienteRepository.existsById(id)) return ResponseEntity.notFound().build();
+    clienteRepository.deleteById(id);
+    return ResponseEntity.noContent().build();
 }
+
 }

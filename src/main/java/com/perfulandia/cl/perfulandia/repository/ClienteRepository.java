@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-Cliente findByRut(String rut);
-Cliente findByCorreo(String correo);
 }

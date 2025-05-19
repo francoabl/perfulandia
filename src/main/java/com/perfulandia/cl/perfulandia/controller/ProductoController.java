@@ -25,7 +25,7 @@ public class ProductoController {
         return productoService.obtenerPorId(id);
     }
 
-    @PostMapping
+    @PostMapping("/{id}")
     public Producto crearProducto(@RequestBody Producto producto) {
         return productoService.crearProducto(producto);
     }

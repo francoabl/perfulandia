@@ -1,23 +1,35 @@
 package com.perfulandia.cl.perfulandia.model;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "clientes")
-@Data
+@Getter @Setter
 public class Cliente {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+    @NotBlank(message = "El nombre es obligatorio")
+    private String nombre;
 
-private String nombre;
-private String apellido;
-private String rut;
+    @NotBlank(message = "El rut es obligatorio")
+    private String apellido;
 
-@Column(unique = true)
-private String correo;
 
-private String telefono;
+    @Email(message = "Debe ingresar un correo válido")
+    @NotBlank(message = "El correo es obligatorio")
+    private String correo;
+
+
+
+
+
 }

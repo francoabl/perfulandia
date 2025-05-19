@@ -25,7 +25,7 @@ public class SucursalController {
         return sucursalService.getSucursalById(id);
     }
 
-    @PostMapping
+    @PostMapping("/{id}")
     public Sucursal crearSucursal(@RequestBody Sucursal sucursal) {
         return sucursalService.crearSucursal(sucursal);
     }
