@@ -132,12 +132,6 @@
 (18, 20, 2, '2024-05-18'),
 (19, 17, 1, '2024-05-19'),
 (20, 19, 2, '2024-05-20');
-@GetMapping("/{id}")
-public ResponseEntity<Cliente> obtenerClientePorId(@PathVariable Long id) {
-    return clienteRepository.findById(id)
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
-}</code>
 
 <h2>Sucursales</h2>
 <code>INSERT INTO sucursal (nombre, direccion, telefono, ciudad) VALUES
