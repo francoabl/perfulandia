@@ -1,20 +1,31 @@
 package com.perfulandia.cl.perfulandia.service;
 
-import java.util.List;
-import java.util.Optional;
-
+import com.perfulandia.cl.perfulandia.model.Cliente;
+import com.perfulandia.cl.perfulandia.model.Producto;
+import com.perfulandia.cl.perfulandia.model.Venta;
+import com.perfulandia.cl.perfulandia.repository.ClienteRepository;
+import com.perfulandia.cl.perfulandia.repository.ProductoRepository;
+import com.perfulandia.cl.perfulandia.repository.VentaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.perfulandia.cl.perfulandia.model.Venta;
-import com.perfulandia.cl.perfulandia.repository.VentaRepository;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VentaService {
 
     private final VentaRepository ventaRepository;
+    private final ProductoRepository productoRepository;
+    private final ClienteRepository clienteRepository;
 
-    public VentaService(VentaRepository ventaRepository) {
+    @Autowired
+    public VentaService(VentaRepository ventaRepository,
+                        ProductoRepository productoRepository,
+                        ClienteRepository clienteRepository) {
         this.ventaRepository = ventaRepository;
+        this.productoRepository = productoRepository;
+        this.clienteRepository = clienteRepository;
     }
 
     public List<Venta> getAllVentas() {
@@ -36,5 +47,13 @@ public class VentaService {
 
     public void deleteVenta(Long id) {
         ventaRepository.deleteById(id);
+    }
+
+    public Optional<Producto> getProductoById(Long id) {
+        return productoRepository.findById(id);
+    }
+
+    public Optional<Cliente> getClienteById(Long id) {
+        return clienteRepository.findById(id);
     }
 }

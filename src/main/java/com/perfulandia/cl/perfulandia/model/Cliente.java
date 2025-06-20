@@ -23,7 +23,6 @@ public class Cliente {
     @NotBlank(message = "El rut es obligatorio")
     private String apellido;
 
-
     @Email(message = "Debe ingresar un correo válido")
     @NotBlank(message = "El correo es obligatorio")
     private String correo;

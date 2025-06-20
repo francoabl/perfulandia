@@ -3,9 +3,12 @@ package com.perfulandia.cl.perfulandia.controller;
 import com.perfulandia.cl.perfulandia.model.Sucursal;
 import com.perfulandia.cl.perfulandia.service.SucursalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -25,7 +28,7 @@ public class SucursalController {
         return sucursalService.getSucursalById(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public Sucursal crearSucursal(@RequestBody Sucursal sucursal) {
         return sucursalService.crearSucursal(sucursal);
     }
@@ -33,6 +36,19 @@ public class SucursalController {
     @PutMapping("/{id}")
     public Sucursal actualizarSucursal(@PathVariable Long id, @RequestBody Sucursal sucursal) {
         return sucursalService.actualizarSucursal(id, sucursal);
+    }
+
+    @PatchMapping("/{id}")
+    public Sucursal actualizarParcial(@PathVariable Long id, @RequestBody Map<String, Object> cambios) {
+        Sucursal sucursal = sucursalService.getSucursalById(id).orElseThrow(() -> new RuntimeException("Sucursal no encontrada"));
+        cambios.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(Sucursal.class, key);
+            if (field != null) {
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, sucursal, value);
+            }
+        });
+        return sucursalService.crearSucursal(sucursal);
     }
 
     @DeleteMapping("/{id}")
