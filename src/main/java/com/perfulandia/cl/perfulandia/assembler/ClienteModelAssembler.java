@@ -19,7 +19,4 @@ public class ClienteModelAssembler implements RepresentationModelAssembler<Clien
             linkTo(methodOn(ClienteControllerV2.class).listarClientes()).withRel("clientes")
         );
     }
-
 }
-
-

@@ -14,11 +14,11 @@ public class SucursalService {
     @Autowired
     private SucursalRepository sucursalRepository;
 
-    public List<Sucursal> findAll() {
+    public List<Sucursal> getAllSucursales() {
         return sucursalRepository.findAll();
     }
 
-    public Optional<Sucursal> findById(Long id) {
+    public Optional<Sucursal> getSucursalById(Long id) {
         return sucursalRepository.findById(id);
     }
 
@@ -40,3 +40,4 @@ public class SucursalService {
         sucursalRepository.deleteById(id);
     }
 }
+

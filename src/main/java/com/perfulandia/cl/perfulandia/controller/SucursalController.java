@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/sucursales")
@@ -19,13 +20,12 @@ public class SucursalController {
 
     @GetMapping
     public List<Sucursal> obtenerSucursales() {
-        return sucursalService.findAll();
+        return sucursalService.getAllSucursales();
     }
 
     @GetMapping("/{id}")
-    public Sucursal obtenerSucursalPorId(@PathVariable Long id) {
-        return sucursalService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Sucursal no encontrada"));
+    public Optional<Sucursal> obtenerSucursalPorId(@PathVariable Long id) {
+        return sucursalService.getSucursalById(id);
     }
 
     @PostMapping
@@ -40,9 +40,7 @@ public class SucursalController {
 
     @PatchMapping("/{id}")
     public Sucursal actualizarParcial(@PathVariable Long id, @RequestBody Map<String, Object> cambios) {
-        Sucursal sucursal = sucursalService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Sucursal no encontrada"));
-
+        Sucursal sucursal = sucursalService.getSucursalById(id).orElseThrow(() -> new RuntimeException("Sucursal no encontrada"));
         cambios.forEach((key, value) -> {
             Field field = ReflectionUtils.findField(Sucursal.class, key);
             if (field != null) {
@@ -50,7 +48,6 @@ public class SucursalController {
                 ReflectionUtils.setField(field, sucursal, value);
             }
         });
-
         return sucursalService.crearSucursal(sucursal);
     }
 
